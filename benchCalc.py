@@ -8,21 +8,20 @@ import pandas as pd
 
 #data = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,18), usecols=['CPU Package'])
 
-columnNames = []
 
 #getInputFile
 df = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,2),
 		 usecols=range(2,14),  encoding='cp1252')
 
-print(df)
+colNames = list(df.columns.values)
 
-#get column names
-for words in df:
-	columnNames.append(words)
+print(colNames)
 
-print(columnNames)
-#newDF = pd.DataFrame(columns =)
+#print(columnNames)
 
+#newDF = pd.DataFrame(columns=[columnNames])
+
+#print(newDF)
 
 print("**End of Processing***")
 
