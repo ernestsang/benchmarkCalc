@@ -17,8 +17,10 @@ colNames = list(df.columns.values)
 
 newDF = pd.DataFrame(columns=colNames)
 
+#print column names
 print(newDF.columns)
 print("\n\n")
+
 
 
 print("\n\n***End of Processing***")
