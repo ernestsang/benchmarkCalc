@@ -18,8 +18,16 @@ colNames = list(df.columns.values)
 newDF = pd.DataFrame(columns=colNames)
 
 #print column names
-print(newDF.columns)
-print("\n\n")
+print(newDF.columns, "\n")
+
+#print dataframe dimensions
+#print(newDF.shape, "\n")
+
+#stats starts at 15
+#print(df.loc[15])
+
+numOfRow = df.shape[0]
+
 
 
 
