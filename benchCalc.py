@@ -15,13 +15,11 @@ df = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,2),
 
 colNames = list(df.columns.values)
 
-print(colNames)
+newDF = pd.DataFrame(columns=colNames)
 
-#print(columnNames)
+print(newDF.columns)
+print("\n\n")
 
-#newDF = pd.DataFrame(columns=[columnNames])
 
-#print(newDF)
-
-print("**End of Processing***")
+print("\n\n***End of Processing***")
 
