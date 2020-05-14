@@ -43,11 +43,10 @@ df = df.iloc[15:,]
 #resets indices by shuffling
 df = df.reset_index(drop=True)
 
-print(df)
+#converts entire Dataframe to numeric values
+df = df.apply(pd.to_numeric)
 
-print(df.describe())
-
-
+print("\n\n\n", df.describe(include='all'))
 
 print("\n\n***End of Processing***")
 
