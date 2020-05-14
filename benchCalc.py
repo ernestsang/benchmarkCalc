@@ -45,5 +45,9 @@ df = df.reset_index(drop=True)
 
 print(df)
 
+print(df.describe())
+
+
+
 print("\n\n***End of Processing***")
 
