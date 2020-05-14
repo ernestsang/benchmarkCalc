@@ -1,6 +1,7 @@
 import sys
 import os
 import pandas as pd
+import array
 
 
 		#data = pd.read_csv('TEST_INPUT_EFT.hml', encoding='latin1',
@@ -47,6 +48,18 @@ df = df.reset_index(drop=True)
 df = df.apply(pd.to_numeric)
 
 print("\n\n\n", df.describe(include='all'))
+
+#select column framerate somehow...
+newNames = []
+
+print(len(newNames))
+
+
+
+#df = df.rename(columns={})
+
+#then delete rows in framerate that have 0
+
 
 print("\n\n***End of Processing***")
 
