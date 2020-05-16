@@ -1,8 +1,6 @@
 import sys
 import os
 import pandas as pd
-import array
-
 
 		#data = pd.read_csv('TEST_INPUT_EFT.hml', encoding='latin1',
 		# skiprows=range(0, 18), usecols=range(2, 14))
@@ -17,7 +15,6 @@ df = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,2),
 		 usecols=range(2,14),  encoding='cp1252')
 
 colNames = list(df.columns.values)
-
 		#Did not actually need to create another DataFrame. 
 		#Just needed to learn to use iloc and index reset
 		#newDF = pd.DataFrame(columns=colNames)
@@ -49,17 +46,24 @@ df = df.apply(pd.to_numeric)
 
 print("\n\n\n", df.describe(include='all'))
 
-#select column framerate somehow...
-newNames = []
+		#change trim column names/scratch that don't need to trim
+		#because this below prints values in series position 5 which is Framerate
+		#print(df.iloc[:, [5]])
+		#df.iloc[:,[5]] #this grabs series in position 5 of column
 
-print(len(newNames))
+print(df.head())
 
+		#i = 5
+		#print(df.iloc[0][i])
 
+#next, drop all rows with framerate < 2
 
-#df = df.rename(columns={})
+#figured out how to use drop the rows in position 1-5
+df = df.drop(df.index[[1,2,3,4,5]])
 
-#then delete rows in framerate that have 0
-
+#resent index
+print(df.head())
+print(df.reset_index(drop=True).head())
 
 print("\n\n***End of Processing***")
 
