@@ -1,6 +1,7 @@
 import sys
 import os
 import pandas as pd
+import numpy as np
 
 		#data = pd.read_csv('TEST_INPUT_EFT.hml', encoding='latin1',
 		# skiprows=range(0, 18), usecols=range(2, 14))
@@ -51,19 +52,42 @@ print("\n\n\n", df.describe(include='all'))
 		#print(df.iloc[:, [5]])
 		#df.iloc[:,[5]] #this grabs series in position 5 of column
 
-print(df.head())
+
 
 		#i = 5
 		#print(df.iloc[0][i])
 
-#next, drop all rows with framerate < 2
+		#next, select all rows with framerate < 2. drop later
 
-#figured out how to use drop the rows in position 1-5
-df = df.drop(df.index[[1,2,3,4,5]])
+		#figured out how to use drop the rows in position 1-5 ===DONE====
+		#df = df.drop(df.index[[0,1,2,3,4,5]])
 
-#resent index
-print(df.head())
-print(df.reset_index(drop=True).head())
+		#iloc[row,column] column will always be 5 since that's where Framerate sits
+		#can fix later when i learn how to use strip()
+
+		#if df.iloc[3,5] > 0:
+		#	print("yea")
+
+			#for i in len(df):
+			#	if df.iloc[i,5] < 0:
+			#		print("hea")
+
+		#df = df[df!=0].dropna()
+
+#GOLD
+#finally got it, removes all 0, in the 5th column which is framerate
+df = df[df.iloc[:,5] > 2]
+
+#reindex from all the 0's 
+df = df.reset_index(drop=True)
+
+print(df.iloc[247,5])
+print(len(df))
+print(df.iloc[:,5].describe())
+
+#resent index ====DONE====
+#print(df.head())
+#print(df.reset_index(drop=True).head())
 
 print("\n\n***End of Processing***")
 
