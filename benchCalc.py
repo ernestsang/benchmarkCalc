@@ -97,9 +97,9 @@ print("\n\n\n", df.describe(include='all'))
 frameRate = df.iloc[:,5]
 
 #taking the ceiling function of the 1% of frameRate
-lowOnePercent = math.ceil(len(frameRate) * 0.01)
+numOfOnePercent = math.ceil(len(frameRate) * 0.01)
 
-print(lowOnePercent)
+print(numOfOnePercent)
 
 print("\n\n***End of Processing***")
 
