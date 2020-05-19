@@ -98,8 +98,21 @@ frameRate = df.iloc[:,5]
 
 #taking the ceiling function of the 1% of frameRate
 numOfOnePercent = math.ceil(len(frameRate) * 0.01)
-
+numOfPointOnePercent = math.ceil(len(frameRate) * 0.001)
 print(numOfOnePercent)
+
+#sortSeries
+sortedFPS = frameRate.sort_values()
+#print(sortedFPS)
+
+#grab number of 1% values
+onePercentSeries = sortedFPS.iloc[0:numOfOnePercent]
+print(onePercentSeries)
+
+#get the 1% 
+result = onePercentSeries.sum() / numOfOnePercent
+print(result)
+
 
 print("\n\n***End of Processing***")
 
