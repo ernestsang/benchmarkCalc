@@ -12,8 +12,13 @@ import math
 #getInputFile and to trim the first two columms skipping the last two.
 #dropping the first two columns with usecols2-14
 #encoding helps with utf-8 error Microsoft Windows problem...
-df = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,2),
-		 usecols=range(2,14),  encoding='cp1252')
+#df = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,2),
+#		 usecols=range(2,14),  encoding='cp1252')
+
+#get inputfile via command line
+inputFile = sys.argv[1]
+df = pd.read_csv(inputFile, skiprows=range(0,2), usecols=range(2,14),
+	encoding='cp1252')
 
 		#colNames = list(df.columns.values)
 		#Did not actually need to create another DataFrame. 
@@ -79,8 +84,8 @@ df = df[df.iloc[:,5] > 2]
 #reindex from all the 0's again for dropping all NaN's from 0 frames
 df = df.reset_index(drop=True)
 
-print(df.iloc[247,5])
-print(len(df))
+		#print(df.iloc[247,5]) 
+#print(len(df))
 
 #single brackets and double brackets around 5, gives different print out.
 #but the values are the same.
@@ -99,7 +104,7 @@ frameRate = df.iloc[:,5]
 #taking the ceiling function of the 1% of frameRate
 numOfOnePercent = math.ceil(len(frameRate) * 0.01)
 numOfPointOnePercent = math.ceil(len(frameRate) * 0.001)
-print(numOfOnePercent)
+#print(numOfOnePercent)
 
 #sortSeries
 sortedFPS = frameRate.sort_values()
@@ -107,11 +112,14 @@ sortedFPS = frameRate.sort_values()
 
 #grab number of 1% values
 onePercentSeries = sortedFPS.iloc[0:numOfOnePercent]
-print(onePercentSeries)
+#print(onePercentSeries)
 
 #get the 1% 
 result = onePercentSeries.sum() / numOfOnePercent
-print(result)
+print("\n\nFPS 1% = ", result.round(), ". \n# of lowest FPS values used = ",
+ numOfOnePercent)
+if(numOfOnePercent < 100):
+	print("...you should probably get more data points...")
 
 
 print("\n\n***End of Processing***")
