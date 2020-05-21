@@ -61,5 +61,12 @@ print("\n\n***End of Processing***")
 
 #================================================
 #=============NOTES==============================
-#currently this program completely relies on the fact that each 
-#column will be at this exact position.
+#with v2, program can now grab framerate from any column
+#and calculate values.
+#
+#
+#to do in no particular order
+#1. scale to columns entered by user instead of a static 12 or 15.
+#
+#2. use describe on dataframe after removing fps anomalies >2 && <402
+#	like how v1 of benchCalc was able to do
