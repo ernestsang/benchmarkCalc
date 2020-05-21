@@ -9,11 +9,12 @@ import math
 		#data = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,18), usecols=['CPU Package'])
 
 
-#getInputFile and to trim the first two columms skipping the last two.
-#dropping the first two columns with usecols2-14
-#encoding helps with utf-8 error Microsoft Windows problem...
-#df = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,2),
-#		 usecols=range(2,14),  encoding='cp1252')
+		#getInputFile and to trim the first two columms skipping the last two.
+		#dropping the first two columns with usecols2-14
+		#encoding helps with utf-8 error Microsoft Windows problem...
+		#df = pd.read_csv('TEST_INPUT_EFT.hml', skiprows=range(0,2),
+		#		 usecols=range(2,14),  encoding='cp1252')
+		#used to manually get inputfile.. only use for testing
 
 #get inputfile via command line
 inputFile = sys.argv[1]
@@ -39,7 +40,7 @@ df = pd.read_csv(inputFile, skiprows=range(0,2), usecols=range(2,14),
 
 #deletes first 15 rows, reassigns dataframe back into itself
 #then with reset_index, reorganizes indices.
-df = df.iloc[15:,]
+df = df.iloc[12:,] #12 rows for witcher, 15 for eft
 
 		#prints from 15 and til end of file.
 		#print(df.iloc[15:-1])
@@ -89,7 +90,7 @@ df = df.reset_index(drop=True)
 
 #single brackets and double brackets around 5, gives different print out.
 #but the values are the same.
-print(df.iloc[:,[5]].describe()) 
+print(df.iloc[:,[0]].describe()) #0position for witcher, 5 for eft
 
 print("\n\n\n", df.describe(include='all'))
 #resent index ====DONE====
@@ -99,7 +100,7 @@ print("\n\n\n", df.describe(include='all'))
 #double brackets returns a dataframe
 #single bracket returns a series, which is what I need to use in this pgm
 #to calculate Low 1% and Low 0.1% FPS
-frameRate = df.iloc[:,5]
+frameRate = df.iloc[:,0] #0position for witcer, 5 for eft
 
 #taking the ceiling function of the 1% of frameRate
 numOfOnePercent = math.ceil(len(frameRate) * 0.01)
@@ -118,7 +119,7 @@ onePercentSeries = sortedFPS.iloc[0:numOfOnePercent]
 result = onePercentSeries.sum() / numOfOnePercent
 print("\n\nFPS 1% = ", result.round(), ". \n# of lowest FPS values used = ",
  numOfOnePercent)
-if(numOfOnePercent < 100):
+if(numOfOnePercent < 200):
 	print("...you should probably get more data points...")
 
 
