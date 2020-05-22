@@ -10,12 +10,19 @@ FPS_MAX = 402 #since CSGO max is 400
 #auto skips first 2 rows and uses the 3rd row which is 
 #where the column headers would be on the next row
 inputFile = sys.argv[1]
+numCols = sys.argv[2]
+
+print('=' * 60)
+print('=' * 60)
+print("\nhml filename : ", inputFile)
+print("Number of columns : ", int(numCols), "\n\n")
+
 df = pd.read_csv(inputFile, skiprows=range(0,2), usecols=range(2,14),
 	encoding='cp1252')
 
 #============================================
 #delete unit rows, which is the next 12
-df = df.iloc[12:,] #12 rows for witcher, #15 for eft
+df = df.iloc[int(numCols):,] #12 rows for witcher, #15 for eft
 #needs work to make sure it's dynamic, to skip rows with units
 #=========================================
 
@@ -55,7 +62,6 @@ print("Values used for 0.1% = ", pointOneValues)
 if onePercentValues < 200:
 	print("...You should probably collect more data points...")
 
-
 print("\n\n***End of Processing***")
 
 
@@ -70,3 +76,5 @@ print("\n\n***End of Processing***")
 #
 #2. use describe on dataframe after removing fps anomalies >2 && <402
 #	like how v1 of benchCalc was able to do
+#
+#3. refactor, use methods
